@@ -95,6 +95,89 @@
         <div class="col-sm-2"><img src="building-1.jpeg" height="150px" width="150px" alt="buliding" id="img33" onclick="check(33)"></div>
         <div class="col-sm-2"><img src="building-1.jpeg" height="150px" width="150px" alt="buliding" id="img34" onclick="check(34)"></div>
     </div>
+
+    <script>
+        let ids = new Array(35);
+        ids = ["img0","img1","img2","img3","img4","img5","img6","img7","img8","img9","img10","img11","img12","img13","img14","img15","img16","img17","img18","img19","img20","img21","img22","img23","img24","img25","img26","img27","img28","img29","img30","img31","img32","img33","img34"]
+        
+        var score =0;
+        var locations =0;
+        var lastLocation =0;
+        var fancyCoinLocations = [2, 5, 14, 19, 23, 33];
+        var monsterLocation =20;
+        var gameOver= false;
+        function check(position)
+        {
+            let id = ids[position];
+            
+            if(gameOver==true)
+            {
+                return;
+            }
+            var img = document.getElementById(id);
+            if(fancyCoinLocations.includes(position))
+            {
+                img.src="fancier coin.jpg";
+                score+=3;
+                locations++;
+                document.getElementById("locations").innerText = `locations:`+locations;
+                document.getElementById("score").innerText = score;
+    
+            }
+            else if (position==monsterLocation) {
+                img.src = "Monster image.jpg";
+                gameOver = true; 
+                score -= 5;
+                locations++;
+                document.getElementById("locations").innerText = `locations:`+ locations;
+                document.getElementById("score").innerText = score;
+                }
+            
+            else{
+                img.src="Coin image.jpeg";
+                score+=1;
+                locations++;
+                document.getElementById("locations").innerText =`locations:`+ locations; 
+                document.getElementById("score").innerText = score;
+            }
+    
+            lastLocation = position;
+                
+            }
+            function help()
+            {
+                
+                var col= lastLocation%5;
+                var row= Math.floor(lastLocation/5);
+                
+                const kinshipLocations = [lastLocation-1,lastLocation+1,lastLocation-5,lastLocation+5];
+                for(const kinship of kinshipLocations)
+                {
+                    const adjustedLoc = (kinship+35)%35;
+                    if(fancyCoinLocations.includes(adjustedLoc))
+                {
+                    document.getElementById("help").innerHTML="So close";
+                    return;
+                }
+    
+                }
+                
+    
+                var monsterRow = Math.floor(monsterLocation / 5);
+                var monsterCol = monsterLocation % 5;
+                if (row - monsterRow< 1 && col - monsterCol < 1) {
+                  document.getElementById("help").innerHTML="Grr";
+                }
+                else
+                {
+                    document.getElementById("help").innerHTML="All clear";
+                }
+                document.getElementById("help").onclick = help;
+                //document.querySelector("p.help").onclick = help;
+    
+    
+            }
+      </script>
 </body>
 
 </html>
