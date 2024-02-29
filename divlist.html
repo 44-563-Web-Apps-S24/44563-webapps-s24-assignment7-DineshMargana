@@ -39,7 +39,8 @@
 		<button onclick="makeNewDiv()">Add end</button>
         <button onclick="addFront()">Add front</button>
         <button onclick="remove()">Remove</button>
-		
+		<button onclick="swapItems()">Swap</button>
+	
 
 <script>
 	function makeNewDiv(){
@@ -81,7 +82,7 @@
             var container = document.querySelector(".flex-container");
             container.insertBefore(newElement, container.firstChild);
         }
-	function swapItems() {
+		function swapItems() {
 		const divListItems = document.getElementsByClassName("divlist");
 			var index1 = Math.floor(Math.random() * divListItems.length);
 			var index2 = Math.floor(Math.random() * divListItems.length);
@@ -95,6 +96,7 @@
 			divListItems[index1].parentNode.insertBefore(divListItems[index2], divListItems[index1]);
 			divListItems[index1].parentNode.insertBefore(temp, divListItems[index2].nextSibling);
     }
+
 
 </script>
 </body>
