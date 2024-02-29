@@ -21,7 +21,6 @@
 
 
     <script>
-
         let stopTime = undefined;
 
         function recordTime() {
@@ -31,7 +30,6 @@
 
         }
 
-        
         function startTime() {
             for (let i = 0; i < 5; i++) {
                 setTimeout(() =>{
@@ -50,7 +48,10 @@
             },4000)
         }
 
-        
+        function randomTimer() {
+            const random = Math.floor(Math.random() * 9) + 2;
+            document.getElementById("random").innerText = random ;
+        }
 
     </script>
 </body>
